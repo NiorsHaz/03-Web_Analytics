@@ -58,7 +58,8 @@
             console.log(data);
 
 
-            const visitorData = data.date.map((entry) => ({
+            if (Array.isArray(data) && data.length > 0) {
+            const visitorData = data.map((entry) => ({
                 date: entry.date,
                 visitors: entry.activeUsers
             }));
@@ -96,6 +97,7 @@
                 }
             });
         }
+    }
 
 
         // async function loadAnalytics() {
