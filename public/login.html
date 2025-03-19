@@ -20,8 +20,8 @@
             
             const result = await response.json();
             if (result.success) {
-                alert('Login successful!');
-                window.location.href = 'dashboard.php'; // Redirect on success
+                // alert('Login successful!');
+                window.location.href = 'analytics.html'; // Redirect on success
             } else {
                 alert('Login failed: ' + result.message);
             }
@@ -43,13 +43,13 @@
             <div class="flex justify-between items-center mb-4">
                 <label class="flex items-center">
                     <input type="checkbox" class="mr-2">
-                    <span class="text-gray-600">Remember me</span>
+                    <!-- <span class="text-gray-600">Remember me</span> -->
                 </label>
-                <a href="#" class="text-blue-500 text-sm">Forgot password?</a>
+                <!-- <a href="#" class="text-blue-500 text-sm">Forgot password?</a> -->
             </div>
             <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Login</button>
         </form>
-        <p class="text-sm text-gray-600 text-center mt-4">Don't have an account? <a href="#" class="text-blue-500">Sign up</a></p>
+        <!-- <p class="text-sm text-gray-600 text-center mt-4">Don't have an account? <a href="#" class="text-blue-500">Sign up</a></p> -->
     </div>
 </body>
 </html>
