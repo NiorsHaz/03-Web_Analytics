@@ -8,6 +8,10 @@
     <script src="https://unpkg.com/petite-vue" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script>
+        if (sessionStorage.getItem('IsLoggedIn') !== 'true') {
+            // Redirect to login page if not logged in
+            window.location.href = 'login.html';
+        }
         document.addEventListener("DOMContentLoaded", () => {
             loadAnalytics();
             loadVisitorData();
