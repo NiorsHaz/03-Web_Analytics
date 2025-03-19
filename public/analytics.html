@@ -56,7 +56,7 @@
             const text = await response.text();
             const data = JSON.parse(text);  // Parse the JSON response
 
-            const visitorData = data.map((entry) => ({
+            const visitorData = data.date.map((entry) => ({
                 date: entry.date,
                 visitors: entry.activeUsers
             }));
