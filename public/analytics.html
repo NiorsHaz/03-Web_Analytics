@@ -96,8 +96,60 @@
                     }
                 }
             });
+            }
+        }
+        async function loadEventData() {
+        const response = await fetch('https://03-webanalytics-backend-production.up.railway.app/analyticsTag.php');
+        const text = await response.text();
+        const data = JSON.parse(text);  // Parse the JSON response
+
+        // Log the data to inspect the structure
+        console.log(data);
+
+        // Check if the eventNames array contains data
+        if (Array.isArray(data.eventNames) && data.eventNames.length > 0) {
+            const eventData = data.eventNames.map((entry) => ({
+                eventName: entry.eventName,
+                visitors: entry.activeUsers
+            }));
+
+            // Example: Log event data to inspect
+            console.log(eventData);
+
+            // Create a bar chart with the event data
+            const ctx = document.getElementById("eventChart").getContext("2d");
+            new Chart(ctx, {
+                type: "bar",  // Bar chart type
+                data: {
+                    labels: eventData.map(d => d.eventName),  // Event names as labels
+                    datasets: [{
+                        label: "Active Users",
+                        data: eventData.map(d => d.visitors),  // Active users data
+                        backgroundColor: "#3b82f6",  // Bar color
+                        borderColor: "#1e40af",  // Border color
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { 
+                            ticks: { color: "#4B5563" },
+                            grid: { color: '#e5e7eb' }
+                        },
+                        y: { 
+                            ticks: { color: "#4B5563" },
+                            grid: { color: '#e5e7eb' }
+                        }
+                    }
+                }
+            });
+        } else {
+            console.error('Event data is incorrect or empty', data);
         }
     }
+
 
 
         // async function loadAnalytics() {
