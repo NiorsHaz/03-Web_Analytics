@@ -55,6 +55,8 @@
             const response = await fetch('https://03-webanalytics-backend-production.up.railway.app/analyticsDate.php');
             const text = await response.text();
             const data = JSON.parse(text);  // Parse the JSON response
+            console.log(data);
+
 
             const visitorData = data.date.map((entry) => ({
                 date: entry.date,
