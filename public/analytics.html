@@ -20,6 +20,7 @@
                         visitors: parseInt(data.visitors / data.topPages.length)
                     }));
                     this.renderChart();
+                    console.log(visitorsData);
                 },
                 renderChart() {
                     const ctx = document.getElementById("visitorsChart").getContext("2d");
