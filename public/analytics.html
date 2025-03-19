@@ -10,38 +10,40 @@
         document.addEventListener("DOMContentLoaded", () => {
             loadAnalytics();
         });
-            async function loadAnalytics() {
-                const response = await fetch('https://03-webanalytics-backend-production.up.railway.app/analytics.php');
-                const data = await JSON.parse(response.text());
-                
-                const visitorsData = data.topPages.map((page) => ({
-                    name: page,
-                    visitors: parseInt(data.visitors / data.topPages.length)
-                }));
-                
-                const ctx = document.getElementById("visitorsChart").getContext("2d");
-                new Chart(ctx, {
-                    type: "line",
-                    data: {
-                        labels: visitorsData.map(d => d.name),
-                        datasets: [{
-                            label: "Visitors",
-                            data: visitorsData.map(d => d.visitors),
-                            borderColor: "#3b82f6",
-                            borderWidth: 2,
-                            fill: false
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            x: { ticks: { color: "#4B5563" } },
-                            y: { ticks: { color: "#4B5563" } }
-                        }
+        async function loadAnalytics() {
+            const response = await fetch('https://03-webanalytics-backend-production.up.railway.app/analytics.php');
+            const text = await response.text(); // Await the text content of the response
+            const data = JSON.parse(text); // Now parse the text into JSON
+
+            const visitorsData = data.topPages.map((page) => ({
+                name: page,
+                visitors: parseInt(data.visitors / data.topPages.length)
+            }));
+
+            const ctx = document.getElementById("visitorsChart").getContext("2d");
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: visitorsData.map(d => d.name),
+                    datasets: [{
+                        label: "Visitors",
+                        data: visitorsData.map(d => d.visitors),
+                        borderColor: "#3b82f6",
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { ticks: { color: "#4B5563" } },
+                        y: { ticks: { color: "#4B5563" } }
                     }
-                });
-            }
+                }
+            });
+        }
+
         // async function loadAnalytics() {
         //     const response = await fetch('https://03-webanalytics-backend-production.up.railway.app/analytics.php');
         //     const text = await response.text(); // Read the raw response text
