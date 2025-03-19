@@ -59,13 +59,16 @@
 
                 // Log the data to inspect the structure
                 console.log(data);
-
+                const visitorsData = data.topPages.map((page) => ({
+                    name: page,
+                    visitors: parseInt(data.visitors / data.topPages.length)
+                }));
                 // Check if the data is an array and contains the expected properties
-                if (Array.isArray(data) && data.length > 0) {
-                    const visitorData = data.map((entry) => ({
-                        date: entry.date,
-                        visitors: entry.activeUsers
-                    }));
+                // if (Array.isArray(data) && data.length > 0) {
+                //     const visitorData = data.map((entry) => ({
+                //         date: entry.date,
+                //         visitors: entry.activeUsers
+                //     }));
 
                     // Example: Log visitor data to inspect
                     console.log(visitorData);
